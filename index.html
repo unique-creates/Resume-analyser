@@ -60,13 +60,13 @@ html.light:root[data-page="profile"]{ --accent:#db2777; --accent-strong:#f472b6;
 html.light:root[data-page="about"], html.light:root[data-page="reviews"], html.light:root[data-page="contact"], html.light:root[data-page="demo"]{ --accent:#ea580c; --accent-strong:#f97316; --accent-soft:rgba(234,88,12,.12); --btn-gradient:linear-gradient(135deg, #ea580c 0%, #fb923c 100%); }
 /* ---------- base ---------- */
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:auto;-webkit-overflow-scrolling:touch}
 body{
   background:
     radial-gradient(circle at top left, rgba(61,125,255,0.20), transparent 30%),
     radial-gradient(circle at bottom right, rgba(104,154,255,0.14), transparent 24%),
     linear-gradient(180deg, #05162a 0%, var(--bg) 100%);
-  color:var(--ink);font:400 15px/1.55 "Instrument Sans",sans-serif;-webkit-font-smoothing:antialiased
+  color:var(--ink);font:400 15px/1.55 "Instrument Sans",sans-serif;-webkit-font-smoothing:antialiased;min-width:320px;overflow-x:auto;overscroll-behavior-x:contain
 }
 html.light body{
   background:
@@ -140,13 +140,13 @@ label.f{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-b
 .promo-link:hover,.promo-link.active{background:linear-gradient(135deg, rgba(61,125,255,.12), rgba(107,184,255,.08));color:var(--ink);border-color:rgba(118,170,255,.2);box-shadow:0 8px 18px rgba(61,125,255,.12)}
 .promo-link i{width:16px;height:16px}
 .promo-content{flex:1;min-width:0}
-@media(max-width:960px){.promo-shell{display:block;padding-top:86px}.quick-access-command{position:static;margin-bottom:12px}.promo-rail{position:static;width:auto;margin-bottom:12px}.promo-rail.collapsed{width:100%;max-height:0}.promo-rail nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:960px){.promo-shell{display:block;padding-top:86px;overflow-x:auto}.quick-access-command{position:static;margin-bottom:12px}.promo-rail{position:static;width:auto;margin-bottom:12px}.promo-rail.collapsed{width:100%;max-height:0}.promo-rail nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .brand{display:flex;align-items:center;gap:9px;font:600 14.5px Sora,sans-serif}
 .mfooter{border-top:1px solid var(--line)}
 .mfooter-in{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;padding:34px 20px}
 .mfooter-in nav{display:flex;gap:20px;font-size:12.5px;color:var(--muted)}
 .mfooter-in nav a:hover{color:var(--ink)}
-.page{max-width:1100px;margin:0 auto;padding:120px 20px 90px}
+.page{max-width:1100px;margin:0 auto;padding:120px 20px 90px;min-width:320px;overflow-x:auto}
 /* ---------- hero ---------- */
 .hero{position:relative;overflow:hidden;padding:150px 20px 80px}
 .gridpaper{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(ellipse 85% 75% at 50% 0%,black 35%,transparent 100%);mask-image:radial-gradient(ellipse 85% 75% at 50% 0%,black 35%,transparent 100%)}
@@ -272,7 +272,7 @@ html.light .chat-card{background:linear-gradient(180deg, rgba(255,255,255,.96), 
 .band-in{max-width:720px;margin:0 auto;padding:84px 20px;text-align:center}
 .band .cta{justify-content:center}
 /* ---------- app shell ---------- */
-.shell{display:flex;min-height:100vh}
+.shell{display:flex;min-height:100vh;min-width:320px;overflow-x:auto}
 .sidebar{position:fixed;inset:0 auto 0 0;width:252px;background:var(--surface);border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:50;transform:translateX(-102%);transition:transform .25s}
 @media(min-width:1000px){.sidebar{transform:none}}
 .sidebar.open{transform:none}
@@ -288,9 +288,9 @@ html.light .chat-card{background:linear-gradient(180deg, rgba(255,255,255,.96), 
 .smeta span{font-size:11.5px;color:var(--faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
 .main{flex:1;min-width:0}
 @media(min-width:1000px){.main{margin-left:252px}}
-.container{max-width:980px;margin:0 auto;padding:26px 20px}
+.container{max-width:980px;margin:0 auto;padding:26px 20px;min-width:320px;overflow-x:auto}
 @media(min-width:1000px){.container{padding:40px 32px}}
-.mobilebar{display:flex;align-items:center;gap:10px;height:56px;padding:0 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,0.56);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:30}
+.mobilebar{display:flex;align-items:center;gap:10px;height:56px;padding:0 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,0.56);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:30;overflow-x:auto}
 @media(min-width:1000px){.mobilebar{display:none}}
 .fabtheme{position:fixed;right:20px;bottom:20px;z-index:30;border:1px solid var(--line);background:var(--surface)}
 .ph{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px}
@@ -509,8 +509,23 @@ const DB = {
   get(k, fb){ try { const v = JSON.parse(localStorage.getItem('ara_'+k)); return v ?? fb; } catch { return fb; } },
   set(k, v){ localStorage.setItem('ara_'+k, JSON.stringify(v)); }
 };
-const users = () => DB.get('users', []);
-const saveUsers = v => DB.set('users', v);
+const normalizeEmail = email => String(email ?? '').trim().toLowerCase();
+const users = () => {
+  const list = DB.get('users', []);
+  return Array.isArray(list) ? list.map(u => ({ ...u, email: normalizeEmail(u.email), role: String(u.role || 'user').toLowerCase() })) : [];
+};
+const saveUsers = v => {
+  const list = Array.isArray(v) ? v : [];
+  const normalized = list.map(u => ({ ...u, email: normalizeEmail(u.email), role: String(u.role || 'user').toLowerCase() }));
+  DB.set('users', normalized);
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('ara-users-updated'));
+  }
+};
+const findUserByEmail = email => {
+  const target = normalizeEmail(email);
+  return users().find(u => normalizeEmail(u.email) === target) || null;
+};
 const resumes = () => DB.get('resumes', []);
 const saveResumes = v => DB.set('resumes', v);
 const analyses = () => DB.get('analyses', []);
@@ -533,12 +548,207 @@ async function hashPw(pw, salt){
   for (const c of salt + '::' + pw) { h ^= c.charCodeAt(0); h = Math.imul(h, 0x01000193) >>> 0; }
   return 'fnv:' + h.toString(16);
 }
+const resetCodes = () => DB.get('password_reset_codes', {});
+const generateResetCode = () => String(Math.floor(100000 + Math.random() * 900000));
+function issuePasswordReset(email){
+  const normalized = normalizeEmail(email);
+  const user = findUserByEmail(normalized);
+  if (!user) return { ok: false, message: 'No account exists with that email.' };
+  const code = generateResetCode();
+  const payload = { code, email: normalized, createdAt: Date.now(), expiresAt: Date.now() + 15 * 60 * 1000 };
+  const map = resetCodes();
+  map[normalized] = payload;
+  DB.set('password_reset_codes', map);
+  return { ok: true, code, user };
+}
+function openResetCodeInEmailClient(email, code){
+  const subject = encodeURIComponent('Resume Analyzer password reset code');
+  const body = encodeURIComponent(
+    `Your verification code is ${code}.\n\n` +
+    `Use it within 15 minutes to reset your password.\n\n` +
+    `If the code does not work, request a new one from the app.`
+  );
+  try {
+    window.location.href = `mailto:${encodeURIComponent(email)}?subject=${subject}&body=${body}`;
+  } catch (error) {
+    console.warn('mail client not available', error);
+  }
+}
+function validateResetCode(email, code){
+  const normalized = normalizeEmail(email);
+  const entry = resetCodes()[normalized];
+  if (!entry) return false;
+  if (Date.now() > entry.expiresAt) {
+    delete resetCodes()[normalized];
+    DB.set('password_reset_codes', resetCodes());
+    return false;
+  }
+  return String(entry.code) === String(code).trim();
+}
+function clearPasswordReset(email){
+  const normalized = normalizeEmail(email);
+  const map = resetCodes();
+  delete map[normalized];
+  DB.set('password_reset_codes', map);
+}
 const session = () => DB.get('session', null);
 const currentUser = () => { const s = session(); return s ? users().find(u => u.id === s.userId) || null : null; };
 const ADMIN_EMAILS = ['admin@404codex.dev', 'vedangtiwari2018@gmail.com'];
 const isAdminUser = u => !!u && (u.role === 'admin' || ADMIN_EMAILS.includes(String(u.email || '').toLowerCase()));
 function setSession(u){ DB.set('session', { userId: u.id, token: uid() + uid() }); }
 function logout(){ localStorage.removeItem('ara_session'); }
+
+function showForgotPasswordModal(){
+  const overlay = document.createElement('div');
+  overlay.className = 'overlay';
+  overlay.innerHTML = `
+    <div class="modal card" style="max-width:430px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px">
+        <h3 style="margin:0">Reset password</h3>
+        <button class="btn ghost sm" type="button" data-close-reset="1">Close</button>
+      </div>
+      <div id="resetStageEmail">
+        <p class="hint" style="margin:0 0 12px">Enter your email address. We will send a one-time code for verification.</p>
+        <label class="f" for="resetEmail">Email</label>
+        <input class="input" id="resetEmail" type="email" placeholder="you@example.com">
+        <div style="display:flex;justify-content:flex-end;margin-top:16px">
+          <button class="btn" type="button" id="resetSendCodeBtn">Send code</button>
+        </div>
+      </div>
+      <div id="resetStageCode" hidden>
+        <p class="hint" style="margin:0 0 12px">Use the one-time code below to verify your account and set a new password.</p>
+        <div class="card" style="padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-bottom:16px">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+            <span class="mono" style="font-size:11px;letter-spacing:.08em;color:var(--faint);text-transform:uppercase">Verification code</span>
+            <button class="btn ghost sm" type="button" id="copyResetCodeBtn">Copy code</button>
+          </div>
+          <div id="resetCodeDisplay" class="mono tnum" style="font-size:26px;font-weight:700;letter-spacing:4px;margin-top:10px;word-break:break-all"></div>
+        </div>
+        <div style="display:grid;gap:14px">
+          <div>
+            <label class="f" for="resetCode">Enter the code</label>
+            <input class="input" id="resetCode" inputmode="numeric" maxlength="6" placeholder="123456">
+          </div>
+          <div>
+            <label class="f" for="resetNewPw">New password</label>
+            <input class="input" id="resetNewPw" type="password" placeholder="At least 8 characters">
+          </div>
+          <div>
+            <label class="f" for="resetNewPw2">Confirm password</label>
+            <input class="input" id="resetNewPw2" type="password" placeholder="Repeat the new password">
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px">
+          <button class="btn outline" type="button" id="resetBackBtn">Back</button>
+          <button class="btn" type="button" id="resetConfirmBtn">Reset password</button>
+        </div>
+      </div>
+      <div id="resetErr" class="formerr" hidden style="margin-top:14px"></div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const emailInput = $('#resetEmail');
+  const codeInput = $('#resetCode');
+  const resetCodeDisplay = $('#resetCodeDisplay');
+  const stageEmail = $('#resetStageEmail');
+  const stageCode = $('#resetStageCode');
+  const err = $('#resetErr');
+  const showErr = message => { err.textContent = message; err.hidden = false; };
+  const hideErr = () => { err.hidden = true; err.textContent = ''; };
+
+  const close = () => overlay.remove();
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  $('[data-close-reset]').onclick = close;
+
+  let pendingEmail = '';
+  let pendingCode = '';
+
+  const showCodeDelivery = code => {
+    pendingCode = code;
+    resetCodeDisplay.textContent = code;
+    codeInput.value = '';
+    $('.modal #resetCode')?.focus();
+  };
+
+  $('#resetSendCodeBtn').onclick = async () => {
+    const email = normalizeEmail(emailInput.value);
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      showErr('Please enter a valid email address.');
+      return;
+    }
+    const result = issuePasswordReset(email);
+    if (!result.ok) {
+      showErr(result.message);
+      return;
+    }
+    pendingEmail = email;
+    hideErr();
+    stageEmail.hidden = true;
+    stageCode.hidden = false;
+    showCodeDelivery(result.code);
+    openResetCodeInEmailClient(email, result.code);
+    toast('A reset email was opened in your mail app. If your email app did not open, use the code shown here instead.', 'ok');
+    codeInput.focus();
+  };
+
+  $('#copyResetCodeBtn').onclick = async () => {
+    if (!pendingCode) return;
+    try {
+      await navigator.clipboard.writeText(pendingCode);
+      toast('Reset code copied to clipboard.', 'ok');
+    } catch {
+      toast('Copy failed. Please note the code shown above.', 'error');
+    }
+  };
+
+  $('#resetBackBtn').onclick = () => {
+    hideErr();
+    stageCode.hidden = true;
+    stageEmail.hidden = false;
+    emailInput.focus();
+  };
+
+  $('#resetConfirmBtn').onclick = async () => {
+    const email = pendingEmail || normalizeEmail(emailInput.value);
+    const code = codeInput.value.trim();
+    const newPw = $('#resetNewPw').value;
+    const confirmPw = $('#resetNewPw2').value;
+    if (!email || !code) {
+      showErr('Please enter the code sent to your email.');
+      return;
+    }
+    if (!validateResetCode(email, code)) {
+      showErr('The reset code is invalid or expired. Please send a fresh code.');
+      return;
+    }
+    if (!newPw || newPw.length < 8 || !/[a-zA-Z]/.test(newPw) || !/[0-9]/.test(newPw)) {
+      showErr('New password must be at least 8 characters and include letters and numbers.');
+      return;
+    }
+    if (newPw !== confirmPw) {
+      showErr('The new passwords do not match.');
+      return;
+    }
+    const user = findUserByEmail(email);
+    if (!user) {
+      showErr('This account could not be found. Please try again.');
+      return;
+    }
+    const salt = uid();
+    user.salt = salt;
+    user.hash = await hashPw(newPw, salt);
+    saveUsers(users().map(u => u.id === user.id ? user : u));
+    clearPasswordReset(email);
+    close();
+    toast('Password reset successful. Please sign in with your new password.', 'ok');
+    setTimeout(() => {
+      if (location.hash !== '#/login') location.hash = '#/login';
+      $('#liEmail').value = email;
+      $('#liPw').focus();
+    }, 120);
+  };
+}
 
 /* ================================================================
    ANALYSIS ENGINE — deterministic, explainable, content-sensitive
@@ -1889,13 +2099,14 @@ function handleGoogleCredentialResponse(response) {
     toast('Google account verification failed. Please try again.', 'error');
     return;
   }
-  const email = (profile.email || '').toLowerCase();
+  const email = normalizeEmail(profile.email);
   const name = profile.name || 'Google User';
-  const existing = users().find(u => u.email === email);
+  const existing = findUserByEmail(email);
   const user = existing || {
     id: uid(),
     name,
     email,
+    role: 'user',
     salt: uid(),
     hash: 'google-auth',
     targetJob:'',
@@ -1990,8 +2201,6 @@ function viewLogin(){
   marketingWrap(authShell('Every resume gets scored.<br/>Very few get read.', `
     <h1>Sign in</h1><p class="ps">Continue to your dashboard.</p>
     <div id="authErr" class="formerr" hidden></div>
-    <button class="btn outline wide" type="button" id="googleLogin" style="margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px"><span style="display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:#1a73e8;font-weight:700;font-size:12px">G</span>Continue with Google</button>
-    <div style="display:flex;align-items:center;gap:12px;margin:8px 0 18px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="color:var(--faint);font-size:11px;letter-spacing:.08em;text-transform:uppercase">or</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
     <form id="loginForm" class="form">
       <div><label class="f" for="liEmail">Email</label><input class="input" id="liEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
       <div><label class="f" for="liPw">Password</label><input class="input" id="liPw" type="password" autocomplete="current-password" placeholder="••••••••"></div>
@@ -2007,10 +2216,8 @@ function viewLogin(){
         <input class="input" id="captchaInput" type="text" inputmode="numeric" autocomplete="off" placeholder="Type the answer" />
       </div>
       <button class="btn wide" type="submit" id="liBtn" style="margin-top:14px">Sign in</button>
+      <button class="btn outline wide" type="button" id="forgotPasswordBtn" style="margin-top:10px">Forgot password?</button>
     </form>
-    <button class="demofill" id="adminFill">use admin account — admin@404codex.dev / Admin@1234</button>
-    <button class="demofill" id="primaryAdminFill">use administrator account — vedangtiwari2018@gmail.com / Vedang@1234</button>
-    <button class="demofill" id="demoFill">use demo account — demo@404codex.dev / Demo@1234</button>
     <p class="authswap">No account? <a href="#/register">Create one</a></p>`));
   let currentCaptcha = generateCaptcha();
   const refreshCaptcha = () => {
@@ -2019,28 +2226,47 @@ function viewLogin(){
     $('#captchaInput').value = '';
     if ($('#authErr')) $('#authErr').hidden = true;
   };
+
+  const parseCaptchaValue = raw => {
+    const value = String(raw ?? '').trim().toLowerCase().replace(/×/g, '*').replace(/\s+/g, '');
+    if (!value) return null;
+    if (/^\d+$/.test(value)) return Number(value);
+    const expr = value.match(/^(\d+)([+\-*])(\d+)$/);
+    if (!expr) return null;
+    const [, left, op, right] = expr;
+    const a = Number(left), b = Number(right);
+    if (op === '+') return a + b;
+    if (op === '-') return a - b;
+    if (op === '*') return a * b;
+    return null;
+  };
+
   $('#captchaQuestion').textContent = currentCaptcha.expression;
   $('#captchaRefresh').onclick = refreshCaptcha;
-  $('#adminFill').onclick = () => { $('#liEmail').value = 'admin@404codex.dev'; $('#liPw').value = 'Admin@1234'; };
-  $('#primaryAdminFill').onclick = () => { $('#liEmail').value = 'vedangtiwari2018@gmail.com'; $('#liPw').value = 'Vedang@1234'; };
-  $('#demoFill').onclick = () => { $('#liEmail').value = 'demo@404codex.dev'; $('#liPw').value = 'Demo@1234'; };
-  setupGoogleAuth('googleLogin');
+  $('#forgotPasswordBtn').onclick = () => showForgotPasswordModal();
   $('#loginForm').onsubmit = async e => {
     e.preventDefault();
     const err = $('#authErr'), btn = $('#liBtn');
-    const email = $('#liEmail').value.trim().toLowerCase(), pw = $('#liPw').value;
-    const captchaValue = $('#captchaInput').value.trim();
+    const email = $('#liEmail').value.trim().toLowerCase();
+    const pw = $('#liPw').value;
+    const captchaValue = $('#captchaInput').value;
+    const parsedCaptcha = parseCaptchaValue(captchaValue);
+
     err.hidden = true;
-    if (!email || !pw){ err.textContent = 'Please enter your email and password.'; err.hidden = false; refreshCaptcha(); return; }
-    if (!captchaValue || Number(captchaValue) !== currentCaptcha.answer){
-      err.textContent = 'Incorrect captcha answer. Please solve the new challenge.';
+    if (!email || !pw){
+      err.textContent = 'Please enter your email and password.';
       err.hidden = false;
-      refreshCaptcha();
+      return;
+    }
+    if (parsedCaptcha == null || parsedCaptcha !== currentCaptcha.answer){
+      err.textContent = 'Incorrect captcha answer. Please solve the challenge and try again.';
+      err.hidden = false;
+      $('#captchaInput').value = '';
       return;
     }
     btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Signing in…';
     try {
-      const u = users().find(x => x.email === email);
+      const u = findUserByEmail(email);
       if (!u || (await hashPw(pw, u.salt)) !== u.hash) throw new Error('Invalid email or password.');
       setSession(u);
       toast(`Welcome back, ${u.name.split(' ')[0]}!`, 'ok');
@@ -2049,7 +2275,7 @@ function viewLogin(){
       location.hash = isAdminUser(u) ? '#/admin' : next;
     } catch (ex){
       err.textContent = ex.message; err.hidden = false;
-      refreshCaptcha();
+      $('#captchaInput').value = '';
     } finally {
       btn.disabled = false; btn.textContent = 'Sign in';
     }
@@ -2059,8 +2285,6 @@ function viewRegister(){
   marketingWrap(authShell('Every resume gets scored.<br/>Very few get read.', `
     <h1>Create your account</h1>
     <div id="authErr" class="formerr" hidden></div>
-    <button class="btn outline wide" type="button" id="googleRegister" style="margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px"><span style="display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:#1a73e8;font-weight:700;font-size:12px">G</span>Continue with Google</button>
-    <div style="display:flex;align-items:center;gap:12px;margin:8px 0 18px"><span style="flex:1;height:1px;background:var(--line)"></span><span style="color:var(--faint);font-size:11px;letter-spacing:.08em;text-transform:uppercase">or</span><span style="flex:1;height:1px;background:var(--line)"></span></div>
     <form id="regForm" class="form">
       <div><label class="f" for="reName">Full name</label><input class="input" id="reName" autocomplete="name" placeholder="Alex Johnson"></div>
       <div><label class="f" for="reEmail">Email</label><input class="input" id="reEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
@@ -2071,11 +2295,10 @@ function viewRegister(){
       <button class="btn wide" type="submit" id="reBtn">Create account</button>
     </form>
     <p class="authswap">Already registered? <a href="#/login">Sign in</a></p>`));
-  setupGoogleAuth('googleRegister');
   $('#regForm').onsubmit = async e => {
     e.preventDefault();
     const err = $('#authErr'), btn = $('#reBtn');
-    const name = $('#reName').value.trim(), email = $('#reEmail').value.trim().toLowerCase();
+    const name = $('#reName').value.trim(), email = normalizeEmail($('#reEmail').value);
     const pw = $('#rePw').value, pw2 = $('#rePw2').value;
     err.hidden = true;
     const fail = m => { err.textContent = m; err.hidden = false; };
@@ -2083,10 +2306,10 @@ function viewRegister(){
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fail('Please enter a valid email address.');
     if (pw.length < 8 || !/[a-zA-Z]/.test(pw) || !/[0-9]/.test(pw)) return fail('Password must be 8+ characters and include letters and numbers.');
     if (pw !== pw2) return fail('Passwords do not match.');
-    if (users().some(u => u.email === email)) return fail('An account with this email already exists.');
+    if (findUserByEmail(email)) return fail('An account with this email already exists.');
     btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Creating…';
     const salt = uid();
-    const u = { id: uid(), name, email, salt, hash: await hashPw(pw, salt),
+    const u = { id: uid(), name, email, role: 'user', salt, hash: await hashPw(pw, salt),
       targetJob:'', skills:[], education:'', createdAt: nowIso() };
     saveUsers([...users(), u]);
     setSession(u);
@@ -2122,6 +2345,14 @@ async function fetchBackendAnalysis(payload){
 }
 
 function viewAdmin(){
+  if (!window.__ara_admin_listener_bound) {
+    window.__ara_admin_listener_bound = true;
+    window.addEventListener('ara-users-updated', () => {
+      if ((location.hash || '#/').replace(/^#\/?/, '') === 'admin') {
+        viewAdmin();
+      }
+    });
+  }
   const u = currentUser();
   const allUsers = users();
   const allAnalyses = analyses();
@@ -2141,12 +2372,17 @@ function viewAdmin(){
           ${allUsers.map(user => {
             const userAnalyses = allAnalyses.filter(a => a.userId === user.id).length;
             const userResumes = allResumes.filter(r => r.userId === user.id).length;
+            const isSelf = user.id === u.id;
             return `<div class="row" style="padding:12px 0;border-bottom:1px solid var(--line)">
               <div class="grow">
                 <p class="rname">${esc(user.name || 'User')}</p>
                 <p class="rmeta">${esc(user.email)} · ${esc(user.role || 'user')}</p>
               </div>
-              <div class="mono tnum" style="font-size:12px;color:var(--muted)">${userAnalyses} analyses · ${userResumes} resumes</div>
+              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                <div class="mono tnum" style="font-size:12px;color:var(--muted)">${userAnalyses} analyses · ${userResumes} resumes</div>
+                <button type="button" class="btn outline sm" data-admin-view-user="${user.id}">Open</button>
+                ${!isSelf ? `<button type="button" class="btn danger sm" data-admin-delete-user="${user.id}">Delete</button>` : ''}
+              </div>
             </div>`;
           }).join('') || '<p class="empty-note">No users found.</p>'}
         </div>
@@ -2169,6 +2405,31 @@ function viewAdmin(){
       <p class="ps" style="margin-top:12px;">Signed in as ${esc(u.name)} (${esc(u.email)}). You have full access to the platform controls and can view the complete user activity feed.</p>
     </div>
   `);
+  $$('[data-admin-view-user]').forEach(btn => {
+    btn.onclick = () => {
+      sessionStorage.setItem('ara_admin_view_user', btn.dataset.adminViewUser);
+      location.hash = '#/profile';
+    };
+  });
+  $$('[data-admin-delete-user]').forEach(btn => {
+    btn.onclick = () => {
+      const targetUser = users().find(user => user.id === btn.dataset.adminDeleteUser);
+      if (!targetUser) return;
+      confirmDialog({
+        title: 'Delete this account?',
+        desc: `This will permanently remove ${targetUser.name || targetUser.email} and all their saved resumes and analyses.`,
+        yes: 'Delete user',
+        onYes: () => {
+          saveUsers(users().filter(user => user.id !== targetUser.id));
+          saveResumes(resumes().filter(r => r.userId !== targetUser.id));
+          saveAnalyses(analyses().filter(a => a.userId !== targetUser.id));
+          toast(`${targetUser.name || 'User'} account deleted.`, 'ok');
+          if (sessionStorage.getItem('ara_admin_view_user') === targetUser.id) sessionStorage.removeItem('ara_admin_view_user');
+          viewAdmin();
+        }
+      });
+    };
+  });
   animateRings();
 }
 
@@ -3005,15 +3266,40 @@ function viewHistory(){
 
 /* ---------- profile ---------- */
 function viewProfile(){
-  const u = currentUser();
-  let skills = [...(u.skills || [])];
+  const me = currentUser();
+  const adminViewId = isAdminUser(me) ? sessionStorage.getItem('ara_admin_view_user') : null;
+  const targetUser = adminViewId ? users().find(u => u.id === adminViewId) || me : me;
+  const isAdminViewingOther = !!(me && isAdminUser(me) && targetUser && targetUser.id !== me.id);
+  const canManage = !!(me && isAdminUser(me));
+  const canEdit = !isAdminViewingOther;
+  let skills = [...(targetUser.skills || [])];
   const skillChips = () => skills.length ? `<div class="kwrap" style="margin-top:12px">${skills.map(s => `<span class="chip rec"><i data-lucide="x" class="ic3" data-skill="${esc(s)}" style="cursor:pointer"></i>${esc(s)}</span>`).join('')}</div>` : '<p class="empty-note" style="margin-top:10px">No skills yet — add your strongest below.</p>';
-  const savedResumeList = myResumes();
+  const savedResumeList = resumes().filter(r => r.userId === targetUser.id).sort((a, b) => (b.uploadedAt || '').localeCompare(a.uploadedAt || ''));
+  const latestAnalysis = analyses().filter(a => a.userId === targetUser.id).sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''))[0] || null;
+  const userOverall = latestAnalysis?.overallScore ?? 0;
+  const userAts = latestAnalysis?.atsScore ?? 0;
+  const isAdmin = isAdminUser(me);
   appShell('profile', `
-    ${pageHead('Profile & Settings','Defaults here pre-fill your analyses and generated summaries.')}
+    ${pageHead(isAdminViewingOther ? `Viewing ${esc(targetUser.name || 'User')} account` : 'Profile & Settings', isAdminViewingOther ? 'Admin view of the selected account and uploaded resumes.' : 'Defaults here pre-fill your analyses and generated summaries.')}
+    ${latestAnalysis ? `<div class="card panel" style="margin-bottom:20px">
+      <div class="detail-head">
+        <h2><i data-lucide="chart-no-axes-combined" class="ic4" style="color:var(--accent)"></i>Latest performance</h2>
+        <span class="mini-tag">${esc(latestAnalysis.jobRole || 'Resume analysis')}</span>
+      </div>
+      <div class="two" style="margin-top:14px">
+        <div class="card" style="padding:16px;border:1px solid var(--line);background:var(--surface);border-radius:14px;display:grid;gap:6px">
+          <p class="mono" style="font-size:11px;letter-spacing:.08em;color:var(--faint);text-transform:uppercase;margin:0">Overall score</p>
+          <p class="tnum" style="font-size:28px;font-weight:700;margin:0;color:${scoreColor(userOverall)}">${userOverall}</p>
+        </div>
+        <div class="card" style="padding:16px;border:1px solid var(--line);background:var(--surface);border-radius:14px;display:grid;gap:6px">
+          <p class="mono" style="font-size:11px;letter-spacing:.08em;color:var(--faint);text-transform:uppercase;margin:0">ATS score</p>
+          <p class="tnum" style="font-size:28px;font-weight:700;margin:0;color:${scoreColor(userAts)}">${userAts}</p>
+        </div>
+      </div>
+    </div>` : ''}
     <div class="card panel" style="margin-bottom:20px">
       <h2>Saved resumes</h2>
-      <p class="hint" style="margin-top:6px">Your uploaded resumes stay attached to this profile and can be reused without uploading again.</p>
+      <p class="hint" style="margin-top:6px">${isAdminViewingOther ? 'Admin access is limited to the selected account.' : 'Your uploaded resumes stay attached to this profile and can be reused without uploading again.'}</p>
       <div class="rows" style="margin-top:16px">
         ${savedResumeList.length ? savedResumeList.map(r => `
           <div class="row">
@@ -3022,20 +3308,21 @@ function viewProfile(){
               <p class="rmeta">${esc((r.fileType || 'pdf').toUpperCase())} · ${fmtDate(r.uploadedAt)}</p>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
-              <button type="button" class="btn outline sm" data-open-resume="${r.id}"><i data-lucide="upload-cloud" class="ic3"></i>Use</button>
+              ${canManage ? `<button type="button" class="btn outline sm" data-open-resume="${r.id}"><i data-lucide="upload-cloud" class="ic3"></i>Open</button>` : `<button type="button" class="btn outline sm" data-open-resume="${r.id}"><i data-lucide="upload-cloud" class="ic3"></i>Use</button>`}
               <button type="button" class="btn ghost sm" data-delete-resume="${r.id}"><i data-lucide="trash-2" class="ic3"></i></button>
             </div>
           </div>`).join('') : `<div class="empty-note">No saved resumes yet. Upload one from the resume dashboard and it will appear here.</div>`}
       </div>
     </div>
+    ${canEdit ? `
     <form class="card panel" id="profForm">
       <h2>Profile</h2>
       <div class="two" style="margin-top:18px">
-        <div><label class="f">Name</label><input class="input" id="pfName" value="${esc(u.name)}"></div>
-        <div><label class="f">Email</label><input class="input" value="${esc(u.email)}" disabled style="opacity:.6"></div>
-        <div><label class="f">Target job</label><input class="input" id="pfJob" list="pfRoles" value="${esc(u.targetJob)}" placeholder="e.g. Data Analyst">
+        <div><label class="f">Name</label><input class="input" id="pfName" value="${esc(targetUser.name)}"></div>
+        <div><label class="f">Email</label><input class="input" value="${esc(targetUser.email)}" disabled style="opacity:.6"></div>
+        <div><label class="f">Target job</label><input class="input" id="pfJob" list="pfRoles" value="${esc(targetUser.targetJob)}" placeholder="e.g. Data Analyst">
           <datalist id="pfRoles">${JOB_ROLES.map(r => `<option value="${r}">`).join('')}</datalist></div>
-        <div><label class="f">Education</label><input class="input" id="pfEdu" value="${esc(u.education)}" placeholder="B.Tech in Computer Science"></div>
+        <div><label class="f">Education</label><input class="input" id="pfEdu" value="${esc(targetUser.education)}" placeholder="B.Tech in Computer Science"></div>
       </div>
       <label class="f" style="margin-top:18px">Skills</label>
       <div id="skillArea">${skillChips()}</div>
@@ -3058,26 +3345,40 @@ function viewProfile(){
       <h2 style="color:var(--danger)">Danger zone</h2>
       <p style="margin-top:6px;font-size:13.5px;color:var(--muted)">Deleting your account permanently removes your profile, resumes and every saved analysis.</p>
       <button class="btn danger" id="btnDelAcc" style="margin-top:16px">Delete account</button>
-    </div>`);
+    </div>` : ''}
+    ${isAdmin && !canEdit ? `<div class="card panel" style="margin-top:20px"><h2>Admin actions</h2><p class="hint" style="margin-top:8px">You are viewing another user's profile in read-only mode. Use the users list to return to your own account or delete the selected account.</p><button class="btn outline" type="button" id="btnAdminBackToSelf" style="margin-top:16px">Back to my profile</button></div>` : ''}`);
 
   $$('[data-open-resume]').forEach(btn => {
     btn.onclick = () => {
       const resume = savedResumeList.find(r => r.id === btn.dataset.openResume);
       if (!resume) return;
-      setLastResume(resume.id);
-      toast('Saved resume loaded. You can re-use it from the upload page.','ok');
+      if (canManage) {
+        setLastResume(resume.id);
+        toast('Selected resume opened for admin review.','ok');
+      } else {
+        setLastResume(resume.id);
+        toast('Saved resume loaded. You can re-use it from the upload page.','ok');
+      }
       location.hash = '#/upload';
     };
   });
   $$('[data-delete-resume]').forEach(btn => {
     btn.onclick = () => {
       const resumeId = btn.dataset.deleteResume;
+      const resume = resumes().find(r => r.id === resumeId);
       saveResumes(resumes().filter(r => r.id !== resumeId));
+      saveAnalyses(analyses().filter(a => a.resumeId !== resumeId && !(a.userId === targetUser.id && a.resumeFileName === resume?.fileName)));
       if (lastResumeId() === resumeId) setLastResume(null);
-      toast('Saved resume removed.','ok');
+      toast(canManage ? 'Selected resume deleted by admin.' : 'Saved resume removed.','ok');
       viewProfile();
     };
   });
+  if ($('#btnAdminBackToSelf')) {
+    $('#btnAdminBackToSelf').onclick = () => {
+      sessionStorage.removeItem('ara_admin_view_user');
+      viewProfile();
+    };
+  }
 
   const rerenderSkills = () => {
     $('#skillArea').innerHTML = skillChips(); icons();
@@ -3085,47 +3386,58 @@ function viewProfile(){
       skills = skills.filter(s => s !== x.dataset.skill); rerenderSkills();
     });
   };
-  rerenderSkills();
+  if ($('#skillArea')) {
+    rerenderSkills();
+  }
   const addSkill = () => {
     const v = $('#pfSkillIn').value.trim().toLowerCase();
     if (!v || skills.includes(v) || skills.length >= 30) return;
     skills.push(v); $('#pfSkillIn').value = ''; rerenderSkills();
   };
-  $('#pfSkillAdd').onclick = addSkill;
-  $('#pfSkillIn').onkeydown = e => { if (e.key === 'Enter'){ e.preventDefault(); addSkill(); } };
+  $('#pfSkillAdd') && ($('#pfSkillAdd').onclick = addSkill);
+  $('#pfSkillIn') && ($('#pfSkillIn').onkeydown = e => { if (e.key === 'Enter'){ e.preventDefault(); addSkill(); } });
 
-  $('#profForm').onsubmit = e => {
+  $('#profForm') && ($('#profForm').onsubmit = e => {
     e.preventDefault();
     const name = $('#pfName').value.trim();
     if (name.length < 2) return toast('Name must be at least 2 characters.','error');
-    Object.assign(u, { name, targetJob: $('#pfJob').value.trim().slice(0,80),
+    Object.assign(targetUser, { name, targetJob: $('#pfJob').value.trim().slice(0,80),
       education: $('#pfEdu').value.trim().slice(0,300), skills });
-    saveUsers(users().map(x => x.id === u.id ? u : x));
+    saveUsers(users().map(x => x.id === targetUser.id ? targetUser : x));
     toast('Profile updated.','ok');
-  };
-  $('#pwForm').onsubmit = async e => {
+  });
+  $('#pwForm') && ($('#pwForm').onsubmit = async e => {
     e.preventDefault();
     const cur = $('#pwCur').value, nw = $('#pwNew').value, conf = $('#pwConf').value;
-    if ((await hashPw(cur, u.salt)) !== u.hash) return toast('Your current password is incorrect.','error');
+    if ((await hashPw(cur, me.salt)) !== me.hash) return toast('Your current password is incorrect.','error');
     if (nw !== conf) return toast('New passwords do not match.','error');
     if (nw.length < 8 || !/[a-zA-Z]/.test(nw) || !/[0-9]/.test(nw)) return toast('New password must be 8+ characters with letters and numbers.','error');
     const salt = uid();
-    Object.assign(u, { salt, hash: await hashPw(nw, salt) });
-    saveUsers(users().map(x => x.id === u.id ? u : x));
+    Object.assign(me, { salt, hash: await hashPw(nw, salt) });
+    saveUsers(users().map(x => x.id === me.id ? me : x));
     $('#pwCur').value = $('#pwNew').value = $('#pwConf').value = '';
     toast('Password changed.','ok');
-  };
-  $('#btnDelAcc').onclick = () => confirmDialog({
-    title:'Delete your account?',
-    description:'This cannot be undone. All resumes and analyses will be permanently removed.',
+  });
+  $('#btnDelAcc') && ($('#btnDelAcc').onclick = () => confirmDialog({
+    title: isAdminViewingOther ? 'Delete this account?' : 'Delete your account?',
+    description: isAdminViewingOther ? `This will permanently remove ${targetUser.name || targetUser.email} and all their saved resumes and analyses.` : 'This cannot be undone. All resumes and analyses will be permanently removed.',
     onYes: async () => {
-      saveUsers(users().filter(x => x.id !== u.id));
-      saveResumes(resumes().filter(r => r.userId !== u.id));
-      saveAnalyses(analyses().filter(a => a.userId !== u.id));
+      if (isAdminViewingOther) {
+        saveUsers(users().filter(x => x.id !== targetUser.id));
+        saveResumes(resumes().filter(r => r.userId !== targetUser.id));
+        saveAnalyses(analyses().filter(a => a.userId !== targetUser.id));
+        sessionStorage.removeItem('ara_admin_view_user');
+        toast(`${targetUser.name || 'User'} account deleted.`, 'ok');
+        location.hash = '#/admin';
+        return;
+      }
+      saveUsers(users().filter(x => x.id !== me.id));
+      saveResumes(resumes().filter(r => r.userId !== me.id));
+      saveAnalyses(analyses().filter(a => a.userId !== me.id));
       logout();
       toast('Account deleted. Good luck out there!','ok');
       location.hash = '#/';
-    }});
+    }}));
 }
 
 /* ---------- reviews ---------- */
